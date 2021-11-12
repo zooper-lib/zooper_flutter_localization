@@ -1,0 +1,1 @@
+# zooper_flutter_localization
