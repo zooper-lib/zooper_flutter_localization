@@ -1,0 +1,28 @@
+name: zooper_flutter_localization
+description: A simple localization library
+version: 1.0.0
+homepage: https://github.com/zooper-lib
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+
+  collection: ^1.15.0
+
+  csv: ^5.0.0
+
+  flutter:
+    sdk: flutter
+
+  path: ^1.8.0
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+
+flutter:
+  assets:
+    - assets/localizations/
