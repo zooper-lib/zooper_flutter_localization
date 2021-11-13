@@ -1,7 +1,4 @@
 library zooper_flutter_localization;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'services/localization_service.dart';
+export 'zooper_localizer.dart';
