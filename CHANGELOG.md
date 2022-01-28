@@ -11,3 +11,8 @@
 - Added ability to set a custom csv delimiter
 - Added api descriptions
 - Changed getLocalizationEntry() to tryGetLocalizationEntry()
+
+## 1.0.2
+
+- Added an example project
+- Updated Readme

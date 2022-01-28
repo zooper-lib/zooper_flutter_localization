@@ -35,22 +35,43 @@ import 'package:zooper_flutter_localization/zooper_flutter_localization.dart';
 abstract class LocalizationModule {
   LocalizationService get localizationService;
 
+  // Register a named localization
   @preResolve
-  Future<ZooperLocalizer<TestView>> testViewModelLocalizations(
-          LocalizationService localizationService) =>
-      localizationService.registerAsync<TestView>(
-          'assets/localizations/localizations.csv');
+  @Named('Titles')
+  Future<ZooperLocalizer> titlesLocalizations(LocalizationService localizationService) =>
+      localizationService.loadAsync('assets/localizations/titles.csv');
+
+  // Register an other named localization
+  @preResolve
+  @Named('Errors')
+  Future<ZooperLocalizer> errorsLocalizations(LocalizationService localizationService) =>
+      localizationService.loadAsync('assets/localizations/errors.csv');
+
+  // Register an unnamed localization but with an explicit type
+  @preResolve
+  Future<ZooperLocalizer<MainViewModel>> viewModelLocalizations(LocalizationService localizationService) =>
+      localizationService.loadAsync('assets/localizations/errors.csv');
 }
 ```
 
-This registers a `ZooperLocalizer` with the `TestView` and loads the translations from the defined file.
+This registers a `ZooperLocalizer` and loads the translations from the defined file.
 Then you can inject it easily:
 
 ``` dart
 class TestView {
-  late final ZooperLocalizer<TestViewModel> _localizer;
+  final ZooperLocalizer<TestViewModel> _localizer;
 
   TestView(this._localizer);
+}
+```
+
+or
+
+``` dart
+class TestView {
+  final ZooperLocalizer _localizer;
+
+  TestView(@Named('YourName') this._localizer);
 }
 ```
 
