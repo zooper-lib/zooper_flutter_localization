@@ -8,24 +8,18 @@ void main() {
     TestWidgetsFlutterBinding.ensureInitialized();
 
     LocalizationService service = LocalizationService();
-    var localization =
-        await service.loadAsync<TestClass>('assets/localizations/test.csv');
+    var localization = await service.loadAsync<TestClass>('assets/localizations/test.csv');
 
-    expect(
-        'Hallo',
-        localization.getLocalizationByLocale(
-            'hello', const Locale('de', 'DE')));
+    expect('Hallo', localization.getLocalizationByLocale('hello', const Locale('de', 'DE')));
   });
 
   test('Fallback value', () async {
     TestWidgetsFlutterBinding.ensureInitialized();
 
     LocalizationService service = LocalizationService();
-    var localization =
-        await service.loadAsync<TestClass>('assets/localizations/test.csv');
+    var localization = await service.loadAsync<TestClass>('assets/localizations/test.csv');
 
-    expect('Hello',
-        localization.getLocalizationByLocale('hello', const Locale('ru')));
+    expect('Hello', localization.getLocalizationByLocale('hello', const Locale('ru')));
   });
 }
 
