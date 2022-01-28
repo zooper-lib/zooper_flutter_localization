@@ -10,20 +10,22 @@ import 'asset_loader.dart';
 
 class CsvLoader extends AssetLoader {
   late CsvParser _csvParser;
+  String delimiter;
   Locale? fallbackLocale;
   Locale Function()? localeDelegate;
 
-  CsvLoader(
+  CsvLoader({
+    this.delimiter = ';',
     this.fallbackLocale,
     this.localeDelegate,
-  ) {
+  }) {
     _csvParser = CsvParser();
   }
 
   @override
   Future<ZooperLocalizer<T>> loadAsync<T>(String path) async {
     var content = await rootBundle.loadString(path);
-    var parsed = _csvParser.parse(content, ',');
+    var parsed = _csvParser.parse(content, delimiter);
 
     List<Locale> locales = [];
 
@@ -46,8 +48,7 @@ class CsvLoader extends AssetLoader {
         localizedValues.add(localizedValue);
       }
 
-      LocalizationEntry entry =
-          LocalizationEntry(parsed[i][0], localizedValues);
+      LocalizationEntry entry = LocalizationEntry(parsed[i][0], localizedValues);
       entries.add(entry);
     }
 

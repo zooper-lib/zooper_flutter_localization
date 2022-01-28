@@ -17,23 +17,34 @@ class LocalizationService {
     AssetLoader? loader,
     Locale? fallbackLocale,
     Locale Function()? localeDelegate,
+    String csvDelimiter = ';',
   }) async {
     // If no explicit loader is provided, try to do it with the extension
     loader = loader ??
-        _getLoaderByExtension(pathToAsset, fallbackLocale, localeDelegate);
+        _getLoaderByExtension(
+          pathToAsset,
+          fallbackLocale,
+          localeDelegate,
+          csvDelimiter,
+        );
 
     return await loader.loadAsync<T>(pathToAsset);
   }
 
-  AssetLoader _getLoaderByExtension(String pathToAsset, Locale? fallbackLocale,
-      Locale Function()? localeDelegate) {
+  AssetLoader _getLoaderByExtension(
+    String pathToAsset,
+    Locale? fallbackLocale,
+    Locale Function()? localeDelegate,
+    String csvDelimiter,
+  ) {
     final extension = p.extension(pathToAsset);
 
     switch (extension) {
       case '.csv':
         return CsvLoader(
-          fallbackLocale,
-          localeDelegate,
+          delimiter: csvDelimiter,
+          fallbackLocale: fallbackLocale,
+          localeDelegate: localeDelegate,
         );
     }
 
