@@ -1,6 +1,6 @@
 name: zooper_flutter_localization
 description: A simple localization library which aims to have multiple localization files.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/zooper-lib
 
 environment:
