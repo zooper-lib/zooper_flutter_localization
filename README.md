@@ -1,6 +1,6 @@
 # zooper_flutter_localization
 
-A simple localization library.
+A simple localization library which aims to have multiple localization files.
 This lib is aimed to work with [get_it](https://pub.dev/packages/get_it) or [injectable](https://pub.dev/packages/injectable),
 but it should works for any other framework.
 
