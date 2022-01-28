@@ -5,3 +5,9 @@
 - Added ability to load one file per localizer
 - Added ability to inject Localizer
 - Added ability to set a fallback locale
+
+## 1.0.1
+
+- Added ability to set a custom csv delimiter
+- Added api descriptions
+- Changed getLocalizationEntry() to tryGetLocalizationEntry()

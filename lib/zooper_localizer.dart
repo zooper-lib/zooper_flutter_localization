@@ -18,19 +18,24 @@ class ZooperLocalizer<T> {
   /// Default is the devices locale
   late ValueGetter<Locale> _getLocale;
 
-  ZooperLocalizer(this.entries,
-      {Locale? fallbackLocale, ui.Locale Function()? localeDelegate}) {
+  ZooperLocalizer(
+    this.entries, {
+    Locale? fallbackLocale,
+    ui.Locale Function()? localeDelegate,
+  }) {
     _fallbackLocale = fallbackLocale ?? const ui.Locale('en', 'US');
 
     // If no function is provided, the locale is the device locale
     _getLocale = localeDelegate ?? () => ui.window.locale;
   }
 
+  /// Gets the localized value by the default locale
   String operator [](String key) => getLocalizationByLocale(key, _getLocale());
 
-  String getLocalization(String key) =>
-      getLocalizationByLocale(key, _getLocale());
+  /// Gets the localized value by the default locale
+  String getLocalization(String key) => getLocalizationByLocale(key, _getLocale());
 
+  /// Gets the localized value by a specific locale
   String getLocalizationByLocale(String key, Locale locale) {
     var entry = entries.firstWhereOrNull((element) => element.key == key);
 
@@ -39,16 +44,14 @@ class ZooperLocalizer<T> {
       return '';
     }
 
-    var localizedValue = entry.localizedValues
-        .firstWhereOrNull((element) => element.locale == locale);
+    var localizedValue = entry.localizedValues.firstWhereOrNull((element) => element.locale == locale);
 
     if (localizedValue != null) {
       return localizedValue.localeValue;
     }
 
     if (localizedValue == null) {
-      var fallbackEntry = entry.localizedValues
-          .firstWhereOrNull((element) => element.locale == _fallbackLocale);
+      var fallbackEntry = entry.localizedValues.firstWhereOrNull((element) => element.locale == _fallbackLocale);
 
       if (fallbackEntry == null) {
         throw Exception(
@@ -61,7 +64,8 @@ class ZooperLocalizer<T> {
     throw Exception('Something really bad happened, need to fix this!');
   }
 
-  LocalizationEntry? getLocalizationEntry(String key) {
+  /// Gets the whole [LocalizationEntry]
+  LocalizationEntry? tryGetLocalizationEntry(String key) {
     return entries.firstWhereOrNull((element) => element.key == key);
   }
 }
